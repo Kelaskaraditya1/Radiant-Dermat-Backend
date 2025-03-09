@@ -1,4 +1,4 @@
-package com.StarkIndustries.RadientDermat.authentication.exception;
+package com.StarkIndustries.RadientDermat.exception;
 
 import com.StarkIndustries.RadientDermat.keys.Keys;
 import org.springframework.http.HttpHeaders;
