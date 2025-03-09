@@ -1,6 +1,6 @@
 package com.StarkIndustries.RadientDermat.authentication.filter;
 
-import com.StarkIndustries.RadientDermat.authentication.model.MyUserDetailsService;
+import com.StarkIndustries.RadientDermat.authentication.service.MyUserDetailsService;
 import com.StarkIndustries.RadientDermat.authentication.service.JwtService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

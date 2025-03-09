@@ -1,7 +1,7 @@
 package com.StarkIndustries.RadientDermat.authentication.configuration;
 
 import com.StarkIndustries.RadientDermat.authentication.filter.JwtFilter;
-import com.StarkIndustries.RadientDermat.authentication.model.MyUserDetailsService;
+import com.StarkIndustries.RadientDermat.authentication.service.MyUserDetailsService;
 import jakarta.persistence.EntityManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
