@@ -14,8 +14,8 @@ import java.util.Properties;
 @Component
 public class EmailService {
 
-    @Value("${APP_PASSWORD}")
-    public String appPassword;
+//    @Value("${APP_PASSWORD}")
+//    public String appPassword;
 
     public boolean verifyEmail(int otp,String email){
 
@@ -39,7 +39,7 @@ public class EmailService {
         Session session = Session.getInstance(properties, new Authenticator() {
             @Override
             protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication(Keys.APP_PASSWORD_EMAIL,appPassword);
+                return new PasswordAuthentication(Keys.APP_PASSWORD_EMAIL,System.getenv("APP_PASSWORD"));
             }
         });
 
