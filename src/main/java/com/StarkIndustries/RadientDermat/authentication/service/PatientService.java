@@ -1,6 +1,7 @@
 package com.StarkIndustries.RadientDermat.authentication.service;
 
 import com.StarkIndustries.RadientDermat.authentication.model.Patients;
+import com.StarkIndustries.RadientDermat.authentication.model.UpdatePasswordModel;
 import com.StarkIndustries.RadientDermat.authentication.repository.PatientRepository;
 import com.StarkIndustries.RadientDermat.cloudinary.service.CloudinaryService;
 import com.StarkIndustries.RadientDermat.keys.Keys;
@@ -62,5 +63,17 @@ public class PatientService {
          if(Integer.parseInt(httpSession.getAttribute(Keys.OTP).toString())==otp)
              return true;
          return false;
+    }
+
+    public boolean updatePassword(UpdatePasswordModel updatePasswordModel){
+        Patients patients = this.patientRepository.findByUsername(updatePasswordModel.getUsername());
+        if(patients!=null){
+            if(this.bCryptPasswordEncoder.matches(updatePasswordModel.getPassword(),patients.getPassword())){
+                patients.setPassword(this.bCryptPasswordEncoder.encode(updatePasswordModel.getNewPassword()));
+                this.patientRepository.save(patients);
+                return true;
+            }
+        }
+        return false;
     }
 }

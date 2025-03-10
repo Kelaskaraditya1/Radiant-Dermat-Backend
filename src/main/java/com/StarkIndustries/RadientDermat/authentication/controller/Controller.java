@@ -1,6 +1,7 @@
 package com.StarkIndustries.RadientDermat.authentication.controller;
 
 import com.StarkIndustries.RadientDermat.authentication.model.Patients;
+import com.StarkIndustries.RadientDermat.authentication.model.UpdatePasswordModel;
 import com.StarkIndustries.RadientDermat.authentication.scheduler.Scheduler;
 import com.StarkIndustries.RadientDermat.authentication.service.EmailService;
 import com.StarkIndustries.RadientDermat.authentication.service.PatientService;
@@ -84,6 +85,15 @@ public class Controller {
             return ResponseEntity.status(HttpStatus.OK).body("Email verified Successfully!!");
         }
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Enter valid otp!!");
+    }
+
+    @PutMapping("/update-password")
+    public ResponseEntity<String> updatePassword(@RequestBody UpdatePasswordModel updatePasswordModel){
+
+        if(patientService.updatePassword(updatePasswordModel))
+            return ResponseEntity.status(HttpStatus.OK).body("Password updated Successfully");
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Enter proper username!!");
+
     }
 
 }

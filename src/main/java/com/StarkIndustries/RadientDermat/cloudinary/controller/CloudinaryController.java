@@ -1,6 +1,7 @@
 package com.StarkIndustries.RadientDermat.cloudinary.controller;
 
 import com.StarkIndustries.RadientDermat.cloudinary.service.CloudinaryService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
