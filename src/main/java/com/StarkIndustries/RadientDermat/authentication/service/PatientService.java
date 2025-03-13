@@ -76,4 +76,27 @@ public class PatientService {
         }
         return false;
     }
+
+    public Patients signupPatient(Patients patients){
+        if(!this.patientRepository.existsById(patients.getPatientId())){
+            patients.setPassword(this.bCryptPasswordEncoder.encode(patients.getPassword()));
+            this.patientRepository.save(patients);
+            return patients;
+        }
+        return null;
+    }
+
+    public Patients addProfilePic(String username,MultipartFile multipartFile){
+        Patients patients = this.patientRepository.findByUsername(username);
+        if(patients!=null){
+            Map data = this.cloudinaryService.uploadDataToCloud(multipartFile);
+            String profilePicUrl = data.get("secure_url").toString();
+            patients.setProfilePicUrl(profilePicUrl);
+            this.patientRepository.save(patients);
+            return patients;
+        }
+        return null;
+    }
+
+
 }

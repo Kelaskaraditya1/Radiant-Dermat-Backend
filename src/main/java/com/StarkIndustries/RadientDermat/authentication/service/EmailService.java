@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.Properties;
-
+    
 @Service
 @Component
 public class EmailService {
@@ -39,7 +39,7 @@ public class EmailService {
         Session session = Session.getInstance(properties, new Authenticator() {
             @Override
             protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication(Keys.APP_PASSWORD_EMAIL,System.getenv("APP_PASSWORD"));
+                return new PasswordAuthentication(Keys.APP_PASSWORD_EMAIL,"rfxm zujq ampu pwkm");
             }
         });
 

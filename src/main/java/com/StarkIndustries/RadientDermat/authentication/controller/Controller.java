@@ -36,21 +36,21 @@ public class Controller {
 
     @GetMapping("/greetings")
     public ResponseEntity<String> greetings(){
-        return ResponseEntity.status(HttpStatus.OK).body("Greetings\nI am Optimus Prime!!");
+        return ResponseEntity.status(HttpStatus.OK).body("Greetings\nI am Ironman!!");
     }
 
-    @PostMapping("/signup")
-    public ResponseEntity<Patients> signup(@RequestParam("image")MultipartFile multipartFile, @RequestParam("user") String patients){
-        try{
-            Patients patients1 = this.objectMapper.readValue(patients, Patients.class);
-            if(patientService.signup(patients1,multipartFile))
-                return ResponseEntity.status(HttpStatus.OK).body(patients1);
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-    }
+//    @PostMapping("/signup")
+//    public ResponseEntity<Patients> signup(@RequestParam("image")MultipartFile multipartFile, @RequestParam("user") String patients){
+//        try{
+//            Patients patients1 = this.objectMapper.readValue(patients, Patients.class);
+//            if(patientService.signup(patients1,multipartFile))
+//                return ResponseEntity.status(HttpStatus.OK).body(patients1);
+//        }catch (Exception e){
+//            e.printStackTrace();
+//        }
+//
+//        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+//    }
 
     @PostMapping("/login")
     public ResponseEntity<String> login(@RequestBody Patients patients) throws Exception{
@@ -94,6 +94,22 @@ public class Controller {
             return ResponseEntity.status(HttpStatus.OK).body("Password updated Successfully");
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Enter proper username!!");
 
+    }
+
+    @PostMapping("/signup")
+    public ResponseEntity<Patients> registerPatient(@RequestBody Patients patients){
+        Patients patients1 = this.patientService.signupPatient(patients);
+        if(patients1!=null)
+            return ResponseEntity.status(HttpStatus.CREATED).body(patients1);
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+    }
+
+    @PutMapping("/add-profile-pic/{username}")
+    public ResponseEntity<Patients> addProfilePic(@RequestParam("image") MultipartFile multipartFile, @PathVariable("username") String username){
+        Patients patients = this.patientService.addProfilePic(username,multipartFile);
+        if(patients!=null)
+            return ResponseEntity.status(HttpStatus.OK).body(patients);
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     }
 
 }

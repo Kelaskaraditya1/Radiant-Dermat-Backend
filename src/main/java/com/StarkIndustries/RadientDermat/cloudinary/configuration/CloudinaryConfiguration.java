@@ -24,9 +24,9 @@ public class CloudinaryConfiguration {
     @Bean
     public Cloudinary getCloudinaryConfigurations(){
         Map<String,Object> configurations = new HashMap<>();
-        configurations.put(Keys.CLOUD_NAME,System.getenv("CLOUD_NAME"));
-        configurations.put(Keys.API_KEY,System.getenv("API_KEY"));
-        configurations.put(Keys.API_SECRETE,System.getenv("API_SECRET"));
+        configurations.put(Keys.CLOUD_NAME,"dhdrzsxor");
+        configurations.put(Keys.API_KEY,"316185456453451");
+        configurations.put(Keys.API_SECRETE,"QrkDeLlcsz9z2maFx1grSIE4wDA");
         configurations.put(Keys.SECURE,true);
         return new Cloudinary(configurations);
     }
