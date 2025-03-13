@@ -36,7 +36,7 @@ public class Controller {
 
     @GetMapping("/greetings")
     public ResponseEntity<String> greetings(){
-        return ResponseEntity.status(HttpStatus.OK).body("Greetings\nI am Ironman!!");
+        return ResponseEntity.status(HttpStatus.OK).body("Greetings, I am Ironman!!");
     }
 
 //    @PostMapping("/signup")
