@@ -98,5 +98,20 @@ public class PatientService {
         return null;
     }
 
+    public Patients getPatientByUsername(String username){
+        Patients patients = this.patientRepository.findByUsername(username);
+        if(patients!=null)
+            return patients;
+        return null;
+    }
+
+    public boolean deleteUser(int patientId){
+        if(this.patientRepository.existsById(patientId)){
+            this.patientRepository.deleteById(patientId);
+            return true;
+        }
+        return false;
+    }
+
 
 }

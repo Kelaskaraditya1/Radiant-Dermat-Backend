@@ -14,7 +14,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-
 import java.util.List;
 import java.util.Random;
 
@@ -33,6 +32,10 @@ public class Controller {
 
     @Autowired
     public Scheduler scheduler;
+
+    private static final long MIN_FILE_SIZE = 10 * 1024; // 10 KB
+
+    private static final long MAX_FILE_SIZE = 10 * 1024 * 1024; // 10 MB
 
     @GetMapping("/greetings")
     public ResponseEntity<String> greetings(){
@@ -105,11 +108,39 @@ public class Controller {
     }
 
     @PutMapping("/add-profile-pic/{username}")
-    public ResponseEntity<Patients> addProfilePic(@RequestParam("image") MultipartFile multipartFile, @PathVariable("username") String username){
-        Patients patients = this.patientService.addProfilePic(username,multipartFile);
+    public ResponseEntity<?> addProfilePic(@RequestParam("image") MultipartFile multipartFile, @PathVariable("username") String username){
+        if(!multipartFile.isEmpty()){
+
+            if(multipartFile.getSize()>=MIN_FILE_SIZE && multipartFile.getSize()<=MAX_FILE_SIZE){
+                Patients patients = this.patientService.addProfilePic(username,multipartFile);
+                if(patients!=null)
+                    return ResponseEntity.status(HttpStatus.OK).body(patients);
+            }else{
+                if(multipartFile.getSize()>MAX_FILE_SIZE)
+                    return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body("Image size should be less than 10 mb");
+                else if(multipartFile.getSize()<MIN_FILE_SIZE)
+                    return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body("Image size should be greater than 10 kb");
+            }
+        }
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+    }
+
+    @GetMapping("get-patient/{username}")
+    public ResponseEntity<Patients> getPatientByUsername(@PathVariable("username") String username){
+
+        Patients patients = this.patientService.getPatientByUsername(username);
         if(patients!=null)
             return ResponseEntity.status(HttpStatus.OK).body(patients);
         return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     }
+
+    @DeleteMapping("/delete-patient/{patientId}")
+    public ResponseEntity<?> deleteUser(@PathVariable("patientId") int patientId){
+        if(this.patientService.deleteUser(patientId))
+            return ResponseEntity.status(HttpStatus.OK).build();
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+    }
+
+
 
 }
