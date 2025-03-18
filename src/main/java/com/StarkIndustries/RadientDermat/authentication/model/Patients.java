@@ -29,6 +29,15 @@ public class Patients  {
     @Column(name = "medicalHistory")
     private String medicalHistory;
 
+    public Patients(int patientId, String name, String email, String username, String password, String profilePicUrl, String medicalHistory) {
+        this.patientId = patientId;
+        this.name = name;
+        this.email = email;
+        this.username = username;
+        this.password = password;
+        this.profilePicUrl = profilePicUrl;
+        this.medicalHistory = medicalHistory;
+    }
 
     public Patients(int patientId, String name, String email, String username, String password, String profilePicUrl) {
         this.patientId = patientId;
@@ -106,15 +115,24 @@ public class Patients  {
         this.profilePicUrl = profilePicUrl;
     }
 
+    public String getMedicalHistory() {
+        return medicalHistory;
+    }
+
+    public void setMedicalHistory(String medicalHistory) {
+        this.medicalHistory = medicalHistory;
+    }
+
     @Override
     public String toString() {
-        return "Patient{" +
-                "userId=" + patientId +
+        return "Patients{" +
+                "patientId=" + patientId +
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", profilePicUrl='" + profilePicUrl + '\'' +
+                ", medicalHistory='" + medicalHistory + '\'' +
                 '}';
     }
 }

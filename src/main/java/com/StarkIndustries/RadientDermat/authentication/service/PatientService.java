@@ -2,6 +2,7 @@ package com.StarkIndustries.RadientDermat.authentication.service;
 
 import com.StarkIndustries.RadientDermat.authentication.model.Patients;
 import com.StarkIndustries.RadientDermat.authentication.model.UpdatePasswordModel;
+import com.StarkIndustries.RadientDermat.authentication.model.UpdatePatientModel;
 import com.StarkIndustries.RadientDermat.authentication.repository.PatientRepository;
 import com.StarkIndustries.RadientDermat.cloudinary.service.CloudinaryService;
 import com.StarkIndustries.RadientDermat.keys.Keys;
@@ -111,6 +112,40 @@ public class PatientService {
             return true;
         }
         return false;
+    }
+
+    public Patients updatePatientProfilePic(String username,MultipartFile multipartFile){
+        Patients patients = this.patientRepository.findByUsername(username);
+        if(patients!=null){
+            Map data = this.cloudinaryService.uploadDataToCloud(multipartFile);
+            String updatedProfilePicUrl = data.get("secure_url").toString();
+            patients.setProfilePicUrl(updatedProfilePicUrl);
+            this.patientRepository.save(patients);
+            return patients;
+        }return null;
+    }
+
+    public Patients updatePatient(String username, UpdatePatientModel updatePatientModel){
+
+        Patients patients = this.patientRepository.findByUsername(username);
+
+        if(patients!=null){
+            patients.setName(updatePatientModel.getName());
+            patients.setEmail(updatePatientModel.getEmail());
+            this.patientRepository.save(patients);
+            return patients;
+        }
+        return null;
+    }
+
+    public Patients addMedicalHistory(String username,String medicalHistory){
+        Patients patients = this.patientRepository.findByUsername(username);
+        if(patients!=null){
+            patients.setMedicalHistory(medicalHistory);
+            this.patientRepository.save(patients);
+            return patients;
+        }
+        return null;
     }
 
 

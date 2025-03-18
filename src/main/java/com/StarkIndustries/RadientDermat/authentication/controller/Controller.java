@@ -2,6 +2,7 @@ package com.StarkIndustries.RadientDermat.authentication.controller;
 
 import com.StarkIndustries.RadientDermat.authentication.model.Patients;
 import com.StarkIndustries.RadientDermat.authentication.model.UpdatePasswordModel;
+import com.StarkIndustries.RadientDermat.authentication.model.UpdatePatientModel;
 import com.StarkIndustries.RadientDermat.authentication.scheduler.Scheduler;
 import com.StarkIndustries.RadientDermat.authentication.service.EmailService;
 import com.StarkIndustries.RadientDermat.authentication.service.PatientService;
@@ -141,6 +142,35 @@ public class Controller {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     }
 
+    @PutMapping("/update-profile/{username}")
+    public ResponseEntity<Patients> updateProfile(@PathVariable("username") String username, @RequestBody UpdatePatientModel updatePatientModel){
 
+        Patients patients = this.patientService.updatePatient(username,updatePatientModel);
+        if(patients!=null)
+            return ResponseEntity.status(HttpStatus.OK).body(patients);
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+    }
+
+    @PutMapping("/update-profile-pic/{username}")
+    public ResponseEntity<?> updateProfilePic(@RequestParam("image") MultipartFile multipartFile,@PathVariable("username") String username){
+        if(!multipartFile.isEmpty()){
+            Patients patients = this.patientService.updatePatientProfilePic(username,multipartFile);
+            if(patients!=null)
+                return ResponseEntity.status(HttpStatus.OK).body(patients);
+            else
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+    }
+
+    @PutMapping("/add-medical-history/{username}")
+    public ResponseEntity<Patients> addMedicalHistory(@PathVariable("username") String username,@RequestBody String medicalHistory){
+
+        Patients patients = this.patientService.addMedicalHistory(username,medicalHistory);
+        if(patients!=null)
+            return ResponseEntity.status(HttpStatus.OK).body(patients);
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+
+    }
 
 }
