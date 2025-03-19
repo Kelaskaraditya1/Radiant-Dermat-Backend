@@ -66,16 +66,16 @@ public class PatientService {
          return false;
     }
 
-    public boolean updatePassword(UpdatePasswordModel updatePasswordModel){
-        Patients patients = this.patientRepository.findByUsername(updatePasswordModel.getUsername());
+    public Patients updatePassword(UpdatePasswordModel updatePasswordModel,String username){
+        Patients patients = this.patientRepository.findByUsername(username);
         if(patients!=null){
             if(this.bCryptPasswordEncoder.matches(updatePasswordModel.getPassword(),patients.getPassword())){
                 patients.setPassword(this.bCryptPasswordEncoder.encode(updatePasswordModel.getNewPassword()));
                 this.patientRepository.save(patients);
-                return true;
+                return patients;
             }
         }
-        return false;
+        return null;
     }
 
     public Patients signupPatient(Patients patients){

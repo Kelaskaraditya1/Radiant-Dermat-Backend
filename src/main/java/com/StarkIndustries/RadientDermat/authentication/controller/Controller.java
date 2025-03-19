@@ -91,12 +91,13 @@ public class Controller {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Enter valid otp!!");
     }
 
-    @PutMapping("/update-password")
-    public ResponseEntity<String> updatePassword(@RequestBody UpdatePasswordModel updatePasswordModel){
+    @PutMapping("/update-password/{username}")
+    public ResponseEntity<?> updatePassword(@RequestBody UpdatePasswordModel updatePasswordModel,@PathVariable("username") String username){
 
-        if(patientService.updatePassword(updatePasswordModel))
-            return ResponseEntity.status(HttpStatus.OK).body("Password updated Successfully");
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Enter proper username!!");
+        Patients patients = patientService.updatePassword(updatePasswordModel,username);
+        if(patients!=null)
+            return ResponseEntity.status(HttpStatus.OK).body(patients);
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
 
     }
 
