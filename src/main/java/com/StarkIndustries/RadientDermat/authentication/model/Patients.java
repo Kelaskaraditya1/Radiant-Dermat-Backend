@@ -25,8 +25,7 @@ public class Patients  {
     @Column(name = "profile_pic_url")
     private String profilePicUrl;
 
-    @Lob
-    @Column(name = "medicalHistory")
+    @Column(name = "medicalHistory",columnDefinition = "TEXT")
     private String medicalHistory;
 
     public Patients(int patientId, String name, String email, String username, String password, String profilePicUrl, String medicalHistory) {
