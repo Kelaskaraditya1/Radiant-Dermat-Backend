@@ -174,4 +174,12 @@ public class Controller {
 
     }
 
+    @PutMapping("/forgot-password/{email}/{password}")
+    public ResponseEntity<Patients> getPatientByEmail(@PathVariable("email") String email,@PathVariable("password") String password){
+        var patients = this.patientService.findByEmail(email,password);
+        if(patients!=null)
+            return ResponseEntity.status(HttpStatus.OK).body(patients);
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+    }
+
 }

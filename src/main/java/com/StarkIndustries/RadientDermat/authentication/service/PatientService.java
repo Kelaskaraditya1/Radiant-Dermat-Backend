@@ -148,5 +148,15 @@ public class PatientService {
         return null;
     }
 
+    public Patients findByEmail(String email,String password){
+        Patients patients = this.patientRepository.findByEmail(email);
+        if(patients!=null){
+            patients.setPassword(this.bCryptPasswordEncoder.encode(password));
+            this.patientRepository.save(patients);
+            return patients;
+        }
+        return null;
+    }
+
 
 }
