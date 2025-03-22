@@ -1,6 +1,7 @@
 package com.StarkIndustries.RadientDermat.authentication.service;
 
 import com.StarkIndustries.RadientDermat.authentication.model.Patients;
+import com.StarkIndustries.RadientDermat.authentication.model.PatientsMedicalHistory;
 import com.StarkIndustries.RadientDermat.authentication.model.UpdatePasswordModel;
 import com.StarkIndustries.RadientDermat.authentication.model.UpdatePatientModel;
 import com.StarkIndustries.RadientDermat.authentication.repository.PatientRepository;
@@ -138,10 +139,10 @@ public class PatientService {
         return null;
     }
 
-    public Patients addMedicalHistory(String username,String medicalHistory){
+    public Patients addMedicalHistory(String username, PatientsMedicalHistory medicalHistory){
         Patients patients = this.patientRepository.findByUsername(username);
         if(patients!=null){
-            patients.setMedicalHistory(medicalHistory);
+            patients.setMedicalHistory(medicalHistory.getMedicalHistory());
             this.patientRepository.save(patients);
             return patients;
         }

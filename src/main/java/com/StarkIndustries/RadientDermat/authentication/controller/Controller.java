@@ -1,6 +1,7 @@
 package com.StarkIndustries.RadientDermat.authentication.controller;
 
 import com.StarkIndustries.RadientDermat.authentication.model.Patients;
+import com.StarkIndustries.RadientDermat.authentication.model.PatientsMedicalHistory;
 import com.StarkIndustries.RadientDermat.authentication.model.UpdatePasswordModel;
 import com.StarkIndustries.RadientDermat.authentication.model.UpdatePatientModel;
 import com.StarkIndustries.RadientDermat.authentication.scheduler.Scheduler;
@@ -165,9 +166,9 @@ public class Controller {
     }
 
     @PutMapping("/add-medical-history/{username}")
-    public ResponseEntity<Patients> addMedicalHistory(@PathVariable("username") String username,@RequestBody String medicalHistory){
+    public ResponseEntity<Patients> addMedicalHistory(@PathVariable("username") String username,@RequestBody PatientsMedicalHistory medicalHistory){
 
-        Patients patients = this.patientService.addMedicalHistory(username,medicalHistory);
+            Patients patients = this.patientService.addMedicalHistory(username,medicalHistory);
         if(patients!=null)
             return ResponseEntity.status(HttpStatus.OK).body(patients);
         return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
@@ -181,5 +182,7 @@ public class Controller {
             return ResponseEntity.status(HttpStatus.OK).body(patients);
         return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     }
+
+
 
 }
