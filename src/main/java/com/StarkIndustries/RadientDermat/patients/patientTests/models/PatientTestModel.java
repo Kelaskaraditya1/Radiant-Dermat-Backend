@@ -1,4 +1,4 @@
-package com.StarkIndustries.RadientDermat.patientTests.models;
+package com.StarkIndustries.RadientDermat.patients.patientTests.models;
 
 import jakarta.persistence.*;
 

@@ -1,8 +1,8 @@
 package com.StarkIndustries.RadientDermat.authentication.service;
 
-import com.StarkIndustries.RadientDermat.authentication.model.Patients;
+import com.StarkIndustries.RadientDermat.patients.model.Patients;
 import com.StarkIndustries.RadientDermat.authentication.model.UserPrinciples;
-import com.StarkIndustries.RadientDermat.authentication.repository.PatientRepository;
+import com.StarkIndustries.RadientDermat.patients.repository.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

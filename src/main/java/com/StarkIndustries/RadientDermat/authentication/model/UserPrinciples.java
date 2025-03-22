@@ -1,5 +1,6 @@
 package com.StarkIndustries.RadientDermat.authentication.model;
 
+import com.StarkIndustries.RadientDermat.patients.model.Patients;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

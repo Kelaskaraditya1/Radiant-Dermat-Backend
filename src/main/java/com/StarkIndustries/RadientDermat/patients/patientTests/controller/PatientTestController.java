@@ -1,7 +1,7 @@
-package com.StarkIndustries.RadientDermat.patientTests.controller;
+package com.StarkIndustries.RadientDermat.patients.patientTests.controller;
 
-import com.StarkIndustries.RadientDermat.patientTests.models.PatientTestModel;
-import com.StarkIndustries.RadientDermat.patientTests.service.PatientsTestService;
+import com.StarkIndustries.RadientDermat.patients.patientTests.models.PatientTestModel;
+import com.StarkIndustries.RadientDermat.patients.patientTests.service.PatientsTestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

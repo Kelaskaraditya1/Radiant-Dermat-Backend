@@ -1,4 +1,4 @@
-package com.StarkIndustries.RadientDermat.authentication.model;
+package com.StarkIndustries.RadientDermat.patients.model;
 
 public class UpdatePasswordModel {
 

@@ -1,12 +1,11 @@
-package com.StarkIndustries.RadientDermat.patientTests.service;
+package com.StarkIndustries.RadientDermat.patients.patientTests.service;
 
-import com.StarkIndustries.RadientDermat.authentication.model.Patients;
-import com.StarkIndustries.RadientDermat.authentication.repository.PatientRepository;
+import com.StarkIndustries.RadientDermat.patients.model.Patients;
+import com.StarkIndustries.RadientDermat.patients.repository.PatientRepository;
 import com.StarkIndustries.RadientDermat.cloudinary.service.CloudinaryService;
-import com.StarkIndustries.RadientDermat.patientTests.models.PatientTestModel;
-import com.StarkIndustries.RadientDermat.patientTests.repository.PatientsTestRepository;
+import com.StarkIndustries.RadientDermat.patients.patientTests.models.PatientTestModel;
+import com.StarkIndustries.RadientDermat.patients.patientTests.repository.PatientsTestRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 

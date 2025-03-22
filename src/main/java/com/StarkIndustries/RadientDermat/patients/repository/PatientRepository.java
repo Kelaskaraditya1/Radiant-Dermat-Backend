@@ -1,6 +1,6 @@
-package com.StarkIndustries.RadientDermat.authentication.repository;
+package com.StarkIndustries.RadientDermat.patients.repository;
 
-import com.StarkIndustries.RadientDermat.authentication.model.Patients;
+import com.StarkIndustries.RadientDermat.patients.model.Patients;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

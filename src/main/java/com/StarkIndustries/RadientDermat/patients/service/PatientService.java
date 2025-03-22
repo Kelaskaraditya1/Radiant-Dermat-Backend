@@ -1,10 +1,10 @@
-package com.StarkIndustries.RadientDermat.authentication.service;
+package com.StarkIndustries.RadientDermat.patients.service;
 
-import com.StarkIndustries.RadientDermat.authentication.model.Patients;
-import com.StarkIndustries.RadientDermat.authentication.model.PatientsMedicalHistory;
-import com.StarkIndustries.RadientDermat.authentication.model.UpdatePasswordModel;
-import com.StarkIndustries.RadientDermat.authentication.model.UpdatePatientModel;
-import com.StarkIndustries.RadientDermat.authentication.repository.PatientRepository;
+import com.StarkIndustries.RadientDermat.authentication.service.JwtService;
+import com.StarkIndustries.RadientDermat.patients.model.Patients;
+import com.StarkIndustries.RadientDermat.patients.model.UpdatePasswordModel;
+import com.StarkIndustries.RadientDermat.patients.model.UpdatePatientModel;
+import com.StarkIndustries.RadientDermat.patients.repository.PatientRepository;
 import com.StarkIndustries.RadientDermat.cloudinary.service.CloudinaryService;
 import com.StarkIndustries.RadientDermat.keys.Keys;
 import jakarta.servlet.http.HttpSession;
@@ -139,15 +139,15 @@ public class PatientService {
         return null;
     }
 
-    public Patients addMedicalHistory(String username, PatientsMedicalHistory medicalHistory){
-        Patients patients = this.patientRepository.findByUsername(username);
-        if(patients!=null){
-            patients.setMedicalHistory(medicalHistory.getMedicalHistory());
-            this.patientRepository.save(patients);
-            return patients;
-        }
-        return null;
-    }
+//    public Patients addMedicalHistory(String username, PatientsMedicalHistory medicalHistory){
+//        Patients patients = this.patientRepository.findByUsername(username);
+//        if(patients!=null){
+//            patients.setMedicalHistory(medicalHistory.getMedicalHistory());
+//            this.patientRepository.save(patients);
+//            return patients;
+//        }
+//        return null;
+//    }
 
     public Patients findByEmail(String email,String password){
         Patients patients = this.patientRepository.findByEmail(email);

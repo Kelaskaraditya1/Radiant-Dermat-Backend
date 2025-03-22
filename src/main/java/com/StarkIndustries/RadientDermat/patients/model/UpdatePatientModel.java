@@ -1,6 +1,4 @@
-package com.StarkIndustries.RadientDermat.authentication.model;
-
-import org.springframework.web.multipart.MultipartFile;
+package com.StarkIndustries.RadientDermat.patients.model;
 
 public class UpdatePatientModel {
 

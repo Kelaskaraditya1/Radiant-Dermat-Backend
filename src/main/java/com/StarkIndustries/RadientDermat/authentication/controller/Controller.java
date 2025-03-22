@@ -1,17 +1,15 @@
 package com.StarkIndustries.RadientDermat.authentication.controller;
 
-import com.StarkIndustries.RadientDermat.authentication.model.Patients;
-import com.StarkIndustries.RadientDermat.authentication.model.PatientsMedicalHistory;
-import com.StarkIndustries.RadientDermat.authentication.model.UpdatePasswordModel;
-import com.StarkIndustries.RadientDermat.authentication.model.UpdatePatientModel;
+import com.StarkIndustries.RadientDermat.patients.model.Patients;
+import com.StarkIndustries.RadientDermat.patients.model.UpdatePasswordModel;
+import com.StarkIndustries.RadientDermat.patients.model.UpdatePatientModel;
 import com.StarkIndustries.RadientDermat.authentication.scheduler.Scheduler;
 import com.StarkIndustries.RadientDermat.authentication.service.EmailService;
-import com.StarkIndustries.RadientDermat.authentication.service.PatientService;
+import com.StarkIndustries.RadientDermat.patients.service.PatientService;
 import com.StarkIndustries.RadientDermat.keys.Keys;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -165,15 +163,15 @@ public class Controller {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     }
 
-    @PutMapping("/add-medical-history/{username}")
-    public ResponseEntity<Patients> addMedicalHistory(@PathVariable("username") String username,@RequestBody PatientsMedicalHistory medicalHistory){
-
-            Patients patients = this.patientService.addMedicalHistory(username,medicalHistory);
-        if(patients!=null)
-            return ResponseEntity.status(HttpStatus.OK).body(patients);
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-
-    }
+//    @PutMapping("/add-medical-history/{username}")
+//    public ResponseEntity<Patients> addMedicalHistory(@PathVariable("username") String username,@RequestBody PatientsMedicalHistory medicalHistory){
+//
+//            Patients patients = this.patientService.addMedicalHistory(username,medicalHistory);
+//        if(patients!=null)
+//            return ResponseEntity.status(HttpStatus.OK).body(patients);
+//        return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+//
+//    }
 
     @PutMapping("/forgot-password/{email}/{password}")
     public ResponseEntity<Patients> getPatientByEmail(@PathVariable("email") String email,@PathVariable("password") String password){
