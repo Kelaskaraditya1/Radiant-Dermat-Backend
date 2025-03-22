@@ -6,4 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface MedicalHistoryRepository extends JpaRepository<MedicalHistory,Integer> {
+
+    public MedicalHistory findByUsername(String  username);
 }

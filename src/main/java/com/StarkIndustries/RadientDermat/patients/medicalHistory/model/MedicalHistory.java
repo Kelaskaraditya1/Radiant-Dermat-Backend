@@ -11,13 +11,13 @@ public class MedicalHistory {
     private int medicalHistoryId;
 
     @Column(name="height")
-    private int height;
+    private String height;
 
     @Column(name = "weight")
-    private int weight;
+    private String weight;
 
     @Column(name = "gender")
-    private char gender;
+    private String gender;
 
     @Column(name = "chronicIllness",columnDefinition = "TEXT")
     private String chronicIllness;
@@ -37,7 +37,7 @@ public class MedicalHistory {
     @Column(name = "username",columnDefinition = "TEXT")
     private String username;
 
-    public MedicalHistory(int medicalHistoryId, int height, int weight, char gender, String chronicIllness, String pastSurgeries, String infections, String allergies, String allergicMedications, String username) {
+    public MedicalHistory(int medicalHistoryId, String height, String weight, String gender, String chronicIllness, String pastSurgeries, String infections, String allergies, String allergicMedications, String username) {
         this.medicalHistoryId = medicalHistoryId;
         this.height = height;
         this.weight = weight;
@@ -50,7 +50,7 @@ public class MedicalHistory {
         this.username = username;
     }
 
-    public MedicalHistory(int height, int weight, char gender, String chronicIllness, String pastSurgeries, String infections, String allergies, String allergicMedications, String username) {
+    public MedicalHistory(String height, String weight, String gender, String chronicIllness, String pastSurgeries, String infections, String allergies, String allergicMedications, String username) {
         this.height = height;
         this.weight = weight;
         this.gender = gender;
@@ -62,7 +62,7 @@ public class MedicalHistory {
         this.username = username;
     }
 
-    public MedicalHistory(int height, int weight, char gender, String chronicIllness, String pastSurgeries, String infections, String allergies, String allergicMedications) {
+    public MedicalHistory(String  height, String  weight, String  gender, String chronicIllness, String pastSurgeries, String infections, String allergies, String allergicMedications) {
         this.height = height;
         this.weight = weight;
         this.gender = gender;
@@ -85,27 +85,27 @@ public class MedicalHistory {
         this.medicalHistoryId = medicalHistoryId;
     }
 
-    public int getHeight() {
+    public String  getHeight() {
         return height;
     }
 
-    public void setHeight(int height) {
+    public void setHeight(String height) {
         this.height = height;
     }
 
-    public int getWeight() {
+    public String  getWeight() {
         return weight;
     }
 
-    public void setWeight(int weight) {
+    public void setWeight(String weight) {
         this.weight = weight;
     }
 
-    public char getGender() {
+    public String  getGender() {
         return gender;
     }
 
-    public void setGender(char gender) {
+    public void setGender(String gender) {
         this.gender = gender;
     }
 
