@@ -11,6 +11,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -19,7 +20,7 @@ import java.util.Random;
 
 @RestController
 @RequestMapping("/auth")
-public class Controller {
+public class AuthController {
 
     @Autowired
     public PatientService patientService;
@@ -180,6 +181,11 @@ public class Controller {
             return ResponseEntity.status(HttpStatus.OK).body(patients);
         return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     }
+
+//    @GetMapping("/validate-token")
+//    public RequestEntity<String> validateToken(@RequestHeader("Authorization") String jwtToken){
+//
+//    }
 
 
 
